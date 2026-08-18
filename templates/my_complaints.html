@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Complaints | SII&RS</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>My Complaints</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="alert">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    {% if complaints %}
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Created</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for complaint in complaints %}
+
+            <tr>
+
+                <td>{{ complaint.id }}</td>
+
+                <td>{{ complaint.title }}</td>
+
+                <td>{{ complaint.category }}</td>
+
+                <td>{{ complaint.location or "Not specified" }}</td>
+
+                <td>{{ complaint.priority or "Not assigned" }}</td>
+
+                <td>{{ complaint.status }}</td>
+
+                <td>{{ complaint.created_at }}</td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+        <p>
+            You have not submitted any issues yet.
+        </p>
+
+    {% endif %}
+
+
+    <br>
+
+    <a href="{{ url_for('submit_complaint') }}">
+        + Submit New Issue
+    </a>
+
+    <br><br>
+
+    <a href="{{ url_for('dashboard') }}">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | SII&RS</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Student Dashboard</h1>
+
+    <h2>Welcome, {{ name }} 👋</h2>
+
+    <p>
+        Role: {{ role }}
+    </p>
+
+    <hr>
+
+    <h3>Student Issue Intelligence & Resolution System</h3>
+
+<h3>Issue Management</h3>
+
+<p>
+    Submit a new issue or track your existing complaints.
+</p>
+
+<br>
+
+<a href="{{ url_for('submit_complaint') }}">
+    📝 Submit New Issue
+</a>
+
+<br><br>
+
+<a href="{{ url_for('my_complaints') }}">
+    📋 My Complaints
+</a>
+
+<br><br>
+
+<a href="{{ url_for('logout') }}">
+    🚪 Logout
+</a>
+
+    <a href="{{ url_for('logout') }}">
+        Logout
+    </a>
+
+</div>
+
+</body>
+</html>
